@@ -1,0 +1,1 @@
+The CSS rule `:focus-visible` is not supported in older browsers. This can lead to unexpected behavior when styling focused elements.  For example, you might have custom styling for focused elements that only applies in modern browsers that support `:focus-visible`.
