@@ -1,0 +1,38 @@
+/* focus-solution.css */
+
+/* Basic styles (these would normally be in a separate stylesheet) */
+.button {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+}
+
+.button:focus {
+  outline: none; /* Remove default outline */
+}
+
+.button:focus-visible {
+  background-color: #ddd;
+  border-color: #bbb;
+}
+
+/* JavaScript polyfill (for older browsers without :focus-visible support) */
+function addFocusVisiblePolyfill() {
+  if (document.hasFocus) {
+    return;
+  }
+  // Add a class to focused elements.  This logic will depend on your desired style
+  document.addEventListener('focusin', (event) => {
+    if (!event.target.matches('a[href], button, input, select, textarea')) {
+      return
+    }
+    if (event.target.matches(':focus-within')) {
+      event.target.classList.add('focus-visible');
+    }
+  })
+  document.addEventListener('focusout', (event) => {
+    event.target.classList.remove('focus-visible');
+  })
+}
+
+addFocusVisiblePolyfill();
